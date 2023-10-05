@@ -7,8 +7,37 @@
 #include <sstream>
 #include <stdexcept>
 #include <iomanip>
+#include <iostream>
+LinkedList::LinkedList() {
+    this->head = nullptr;
+    this->tail = nullptr;
+    this->size = 0;
+}
 
-std::vector<Info> parse(std::string fileName) {
+void LinkedList::insertNode(Info info) {
+    Node* newNode = new Node;
+    newNode->info = info;
+    newNode->next = nullptr;
+
+    if (head == nullptr) {
+        head = newNode;
+        tail = newNode;
+    } else {
+        tail->next = newNode;
+        tail = newNode;
+    }
+}
+//empty list fucntion
+void isEmpty(LinkedList list){
+    if(list.head == nullptr){
+        std::cout << "The list is empty" << std::endl;
+    }
+    else{
+        std::cout << "The list is not empty" << std::endl;
+    }
+}
+
+LinkedList LinkedList::parse(std::string fileName) {
     std::ifstream inputFile(fileName);  // RAII is responsible for destruct the file-handling object out of scope. It will handle file closing automatically
     if (!inputFile.is_open()) {
         throw std::runtime_error("Error - Unable to open the file.");
@@ -16,7 +45,8 @@ std::vector<Info> parse(std::string fileName) {
     
     const size_t LINE_COUNT = std::count_if(std::istreambuf_iterator<char>(inputFile), std::istreambuf_iterator<char>(), [](char c) { return c == '\n'; }); // Count the number of '\n' from the input stream (number of lines)
     inputFile.seekg(0); // Sets the position from the input stream to the start
-    std::vector<Info> parsedVec(LINE_COUNT); // Initialize the size of the vector
+    Info parsedNode; 
+    LinkedList list;
 
     for (size_t i = 0; i < LINE_COUNT; ++i) {
         std::string line;
@@ -24,15 +54,14 @@ std::vector<Info> parse(std::string fileName) {
         std::string dateTime = line.substr(0, 16); // Substract the datetime characters
         struct tm timeStruct;
         std::time_t time = mktime(&timeStruct); 
-
         std::istringstream ss(dateTime);
         ss >> std::get_time(&timeStruct, "%d/%m/%Y %H:%M");
-        
-        parsedVec[i] = {time, timeStruct, line[17], line.substr(19, 24)};
+        parsedNode = {time, timeStruct, line[17], line.substr(19, 24)};
+        this->insertNode(parsedNode);
     }
-
-    return parsedVec;
+    return *this;
 }
+
 
 // strptime(dateTime,"%d/%m/%Y %H:%M", &timeStruct); We can't use strptime because Windows isn't POSIX Compliant
 // https://stackoverflow.com/questions/321849/strptime-equivalent-on-windows

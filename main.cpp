@@ -1,7 +1,7 @@
-#include "./parse/parse.hpp"
-#include "./sort/mergeSort.hpp"
-#include "./search/binarySearch.hpp"
-#include "./print/print.hpp"
+#include "./parse/parse.cpp"
+#include "./sort/mergeSort.cpp"
+#include "./search/binarySearch.cpp"
+#include "./print/print.cpp"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -12,7 +12,7 @@
 // Andrés Sandoval Ibarra - A01253138
 // Daniel Fernández Clausen - A01254659
 // Ramón Alberto Gómez Urquídez - A01254784
-// September 22th, 2023
+// October 4th, 2023
 
 int main() {
     try {
@@ -20,11 +20,13 @@ int main() {
         // std::string inputTest2 = "1SV";
         // std::string inputTest3 = "0KI";
         // std::string inputTest4 = "AAA";
-        std::vector<Info> bitacora = parse("bitacora.txt");
-        mergeSort(bitacora, 0, bitacora.size() - 1);
-        std::vector<Info> output = binarySearch(inputTest1, bitacora);
-        print(output);
-
+        LinkedList bitacora;
+        //bitacora = bitacora.parse("bitacora.txt");
+        bitacora.parse("bitacora.txt");
+        //mergeSort(bitacora, 0, bitacora.size() - 1);
+        //std::vector<Info> output = binarySearch(inputTest1, bitacora)
+        isEmpty(bitacora);
+        print(bitacora);
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
         return 1;

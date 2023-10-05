@@ -9,5 +9,21 @@ struct Info {
     std::string ubi;
 };
 
+class Node {
+    public: 
+        Info info;
+        Node* next;
+};
+
+class LinkedList {
+    public:
+        Node* head;
+        Node* tail;
+        int size;
+
+        LinkedList();
+        void insertNode(Info info);
+        LinkedList parse(std::string fileName);    
+};
 // Parse the info into a struct named Info
-std::vector<Info> parse(std::string fileName);
+//std::vector<Info> parse(std::string fileName);
