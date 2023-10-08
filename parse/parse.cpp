@@ -62,6 +62,32 @@ LinkedList LinkedList::parse(std::string fileName) {
     return *this;
 }
 
+int LinkedList::sizeList(LinkedList list){
+    int size = 0;
+    Node* temp = list.head;
+    while (temp != nullptr) {
+        size++;
+        temp = temp->next;
+    }
+    return size;
+}
+
+LinkedList LinkedList::divideList(LinkedList list, char puerto_com){
+    LinkedList list2;
+    *this = LinkedList();
+    Node* temp = list.head;
+    int i = 0;
+    while (temp != nullptr) {
+        if(temp->info.enterPoint == puerto_com){
+            list2.insertNode(temp->info);
+        }
+        else{
+            this->insertNode(temp->info);
+        }
+        temp = temp->next;
+    }
+    return list2;
+}
 
 // strptime(dateTime,"%d/%m/%Y %H:%M", &timeStruct); We can't use strptime because Windows isn't POSIX Compliant
 // https://stackoverflow.com/questions/321849/strptime-equivalent-on-windows

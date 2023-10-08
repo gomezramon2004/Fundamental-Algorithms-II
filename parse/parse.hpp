@@ -24,6 +24,9 @@ class LinkedList {
         LinkedList();
         void insertNode(Info info);
         LinkedList parse(std::string fileName);    
+        void isEmpty(LinkedList list);
+        LinkedList divideList(LinkedList list, char puerto_com);
+        int sizeList(LinkedList list);
 };
 // Parse the info into a struct named Info
 //std::vector<Info> parse(std::string fileName);

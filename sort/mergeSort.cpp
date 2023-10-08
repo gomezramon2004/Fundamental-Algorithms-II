@@ -8,40 +8,64 @@ bool compareInfo(const Info& info1, const Info& info2) {
     return info1.ubi < info2.ubi;
 }
 
-void merge(std::vector<Info>& vec, int left, int mid, int right) {
-    int n1 = mid - left + 1, n2 = right - mid, i = 0, j = 0, k = left;
-    std::vector<Info> leftVec(vec.begin() + left, vec.begin() + left + n1);
-    std::vector<Info> rightVec(vec.begin() + mid + 1, vec.begin() + mid + 1 + n2);
 
-    while (i < n1 && j < n2) {
-        if (compareInfo(leftVec[i], rightVec[j])) {
-            vec[k] = leftVec[i];
-            i++;
+
+LinkedList mergeLists(LinkedList& left, LinkedList& right) {
+    LinkedList mergedList;
+    Node* leftPtr = left.head;
+    Node* rightPtr = right.head;
+
+    while (leftPtr != nullptr && rightPtr != nullptr) {
+        if (compareInfo(leftPtr->info, rightPtr->info)) {
+            mergedList.insertNode(leftPtr->info);
+            leftPtr = leftPtr->next;
         } else {
-            vec[k] = rightVec[j];
-            j++;
+            mergedList.insertNode(rightPtr->info);
+            rightPtr = rightPtr->next;
         }
-        k++;
     }
 
-    while (i < n1) {
-        vec[k] = leftVec[i];
-        i++;
-        k++;
+    while (leftPtr != nullptr) {
+        mergedList.insertNode(leftPtr->info);
+        leftPtr = leftPtr->next;
     }
 
-    while (j < n2) {
-        vec[k] = rightVec[j];
-        j++;
-        k++;
+    while (rightPtr != nullptr) {
+        mergedList.insertNode(rightPtr->info);
+        rightPtr = rightPtr->next;
     }
+
+    return mergedList;
 }
 
-void mergeSort(std::vector<Info>& vec, int left, int right) {
-    if (left < right) {
-        int mid = left + (right - left) / 2;
-        mergeSort(vec, left, mid);
-        mergeSort(vec, mid + 1, right);
-        merge(vec, left, mid, right);
+LinkedList mergeSort(LinkedList& list) {
+    if (list.head == nullptr || list.head->next == nullptr) {
+        // Base case: List is empty or has one node; it's already sorted.
+        return list;
     }
+
+    LinkedList leftHalf, rightHalf;
+    Node* slow = list.head;
+    Node* fast = list.head->next;
+
+    while (fast != nullptr) {
+        fast = fast->next;
+        if (fast != nullptr) {
+            slow = slow->next;
+            fast = fast->next;
+        }
+    }
+
+    leftHalf.head = list.head;
+    leftHalf.tail = slow;
+    rightHalf.head = slow->next;
+    rightHalf.tail = list.tail;
+    slow->next = nullptr;
+
+    leftHalf = mergeSort(leftHalf);
+    rightHalf = mergeSort(rightHalf);
+
+    // Merge the sorted halves and return the result.
+    return mergeLists(leftHalf, rightHalf);
 }
+
