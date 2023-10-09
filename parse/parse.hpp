@@ -5,6 +5,7 @@
 struct Info {
     time_t timeValue; // Value that counts in seconds from 01/01/1970 to the corresponding date
     struct tm dateTime; // Struct that holds the data of our date
+    int monthValue;
     char enterPoint;
     std::string ubi;
 };

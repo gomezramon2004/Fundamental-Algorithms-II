@@ -56,7 +56,7 @@ LinkedList LinkedList::parse(std::string fileName) {
         std::time_t time = mktime(&timeStruct); 
         std::istringstream ss(dateTime);
         ss >> std::get_time(&timeStruct, "%d/%m/%Y %H:%M");
-        parsedNode = {time, timeStruct, line[17], line.substr(19, 24)};
+        parsedNode = {time, timeStruct, stoi(line.substr(3, 4)), line[17], line.substr(19, 24)};
         this->insertNode(parsedNode);
     }
     return *this;

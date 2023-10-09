@@ -26,7 +26,7 @@ int main() {
         //mergeSort(bitacora, 0, bitacora.size() - 1);
         //std::vector<Info> output = binarySearch(inputTest1, bitacora)
         isEmpty(bitacora);
-        bitacora = mergeSort(bitacora, 0);
+        bitacora = mergeSort(bitacora, 1);
         listaMed = listaRojo.divideList(bitacora, 'M');
         print(listaMed);
         print(listaRojo);
