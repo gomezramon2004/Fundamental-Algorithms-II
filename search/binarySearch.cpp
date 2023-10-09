@@ -40,3 +40,15 @@ std::vector<Info> binarySearch(const std::string& input, const std::vector<Info>
 
     return output;
 }
+
+int countMonth(LinkedList list, int month) {
+    int count = 0;
+    Node* ptr = list.head;
+    while (ptr != nullptr) {
+        if (ptr->info.monthValue == month) {
+            ++count;
+        }
+        ptr = ptr->next;
+    }
+    return count;
+}

@@ -16,6 +16,7 @@
 
 int main() {
     try {
+        std::string months[12]= {"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"};
         std::string inputTest1 = "4TL";
         // std::string inputTest2 = "1SV";
         // std::string inputTest3 = "0KI";
@@ -30,6 +31,9 @@ int main() {
         listaMed = listaRojo.divideList(bitacora, 'M');
         print(listaMed);
         print(listaRojo);
+        for (int i = 0; i < 12; ++i) {
+            std::cout << months[i] << ": " << countMonth(listaRojo, i + 1) << std::endl;
+        }
         //print(bitacora);
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
