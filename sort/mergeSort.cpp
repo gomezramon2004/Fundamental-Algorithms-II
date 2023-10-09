@@ -1,22 +1,26 @@
 #include "mergeSort.hpp"
 #include <iostream>
 
-bool compareInfo(const Info& info1, const Info& info2) {
-    if (info1.ubi == info2.ubi) {
-        return info1.timeValue < info2.timeValue;
-    }
-    return info1.ubi < info2.ubi;
+bool compareInfo(const Info& info1, const Info& info2, int option) {
+    if (option == 0) {
+        if (info1.ubi == info2.ubi) {
+            return info1.timeValue < info2.timeValue;
+        }
+        return info1.ubi < info2.ubi;
+    } 
+    return info1.timeValue < info2.timeValue;
+    
 }
 
 
 
-LinkedList mergeLists(LinkedList& left, LinkedList& right) {
+LinkedList mergeLists(LinkedList& left, LinkedList& right, int option) {
     LinkedList mergedList;
     Node* leftPtr = left.head;
     Node* rightPtr = right.head;
 
     while (leftPtr != nullptr && rightPtr != nullptr) {
-        if (compareInfo(leftPtr->info, rightPtr->info)) {
+        if (compareInfo(leftPtr->info, rightPtr->info, option)) {
             mergedList.insertNode(leftPtr->info);
             leftPtr = leftPtr->next;
         } else {
@@ -38,7 +42,7 @@ LinkedList mergeLists(LinkedList& left, LinkedList& right) {
     return mergedList;
 }
 
-LinkedList mergeSort(LinkedList& list) {
+LinkedList mergeSort(LinkedList& list, int option) {
     if (list.head == nullptr || list.head->next == nullptr) {
         // Base case: List is empty or has one node; it's already sorted.
         return list;
@@ -62,10 +66,10 @@ LinkedList mergeSort(LinkedList& list) {
     rightHalf.tail = list.tail;
     slow->next = nullptr;
 
-    leftHalf = mergeSort(leftHalf);
-    rightHalf = mergeSort(rightHalf);
+    leftHalf = mergeSort(leftHalf, option);
+    rightHalf = mergeSort(rightHalf, option);
 
     // Merge the sorted halves and return the result.
-    return mergeLists(leftHalf, rightHalf);
+    return mergeLists(leftHalf, rightHalf, option);
 }
 
