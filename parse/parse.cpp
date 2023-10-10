@@ -28,7 +28,7 @@ LinkedList parse(std::string fileName) {
         std::istringstream ss(dateTime);
         ss >> std::get_time(&timeStruct, "%d/%m/%Y %H:%M");
         parsedNode = {time, timeStruct, line[17], line.substr(19, 24)};
-        list.create(parsedNode);
+        list.insertNode(parsedNode);
     }
 
     return list;
