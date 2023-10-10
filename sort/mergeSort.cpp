@@ -37,10 +37,9 @@ LinkedList mergeLists(LinkedList& left, LinkedList& right) {
 }
 
 LinkedList mergeSort(LinkedList& list) {
-    if (!list.getHead() || !list.getHead()->getNext()) { // Base case: List is empty or has one node; it's already sorted.
+    if (list.getSize() <= 1) {
         return list;
     }
-
     LinkedList leftHalf, rightHalf;
     Node* slow = list.getHead();
     Node* fast = list.getHead()->getNext();
