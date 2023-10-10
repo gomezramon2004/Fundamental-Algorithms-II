@@ -10,27 +10,27 @@ bool compareInfo(const Info& info1, const Info& info2) {
 
 LinkedList mergeLists(LinkedList& left, LinkedList& right) {
     LinkedList mergedList;
-    Node* leftPtr = left.head;
-    Node* rightPtr = right.head;
+    Node* leftPtr = left.getHead();
+    Node* rightPtr = right.getHead();
 
     while (leftPtr && rightPtr) {
-        if (compareInfo(leftPtr->info, rightPtr->info, option)) {
-            mergedList.insertNode(leftPtr->info);
-            leftPtr = leftPtr->next;
+        if (compareInfo(leftPtr->getData(), rightPtr->getData())) {
+            mergedList.insertNode(leftPtr->getData());
+            leftPtr = leftPtr->getNext();
         } else {
-            mergedList.insertNode(rightPtr->info);
-            rightPtr = rightPtr->next;
+            mergedList.insertNode(rightPtr->getData());
+            rightPtr = rightPtr->getNext();
         }
     }
 
     while (leftPtr) {
-        mergedList.insertNode(leftPtr->info);
-        leftPtr = leftPtr->next;
+        mergedList.insertNode(leftPtr->getData());
+        leftPtr = leftPtr->getNext();
     }
 
     while (rightPtr) {
-        mergedList.insertNode(rightPtr->info);
-        rightPtr = rightPtr->next;
+        mergedList.insertNode(rightPtr->getData());
+        rightPtr = rightPtr->getNext()  ;
     }
 
     return mergedList;
@@ -53,11 +53,11 @@ LinkedList mergeSort(LinkedList& list) {
         }
     }
 
-    leftHalf.getHead() = list.getHead();
-    leftHalf.tail = slow;
-    rightHalf.getHead() = slow->getNext();
-    rightHalf.tail = list.tail;
-    slow->getNext() = nullptr;
+    leftHalf.setHead(list.getHead());
+    leftHalf.setTail(slow);
+    rightHalf.setHead(slow->getNext());
+    rightHalf.setTail(list.getTail());
+    slow->setNext(nullptr);
 
     leftHalf = mergeSort(leftHalf);
     rightHalf = mergeSort(rightHalf);

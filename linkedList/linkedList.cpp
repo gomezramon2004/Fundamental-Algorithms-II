@@ -28,15 +28,19 @@ Node* LinkedList::getHead() {
     return head;
 }
 
-void LinkedList::setHead(Node head) {
+Node* LinkedList::getHead() {
+    return tail;
+}
+
+void LinkedList::setHead(Node* head) {
     this->head = head;
 }
 
-void LinkedList::setHead(Node tail) {
+void LinkedList::setHead(Node* tail) {
     this->tail = tail;
 }
 
-void LinkedList::create(Info data) {
+void LinkedList::insertNode(Info data) {
     Node* newNode = new Node(data);
     newNode->setData(data);
     newNode->setNext(nullptr);
