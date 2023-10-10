@@ -1,3 +1,4 @@
+#include "./linkedList/linkedList.hpp"
 #include "./parse/parse.hpp"
 #include "./sort/mergeSort.hpp"
 #include "./search/binarySearch.hpp"
@@ -20,7 +21,7 @@ int main() {
         // std::string inputTest2 = "1SV";
         // std::string inputTest3 = "0KI";
         // std::string inputTest4 = "AAA";
-        std::vector<Info> bitacora = parse("bitacora.txt");
+        LinkedList bitacora = parse("bitacora.txt");
         mergeSort(bitacora, 0, bitacora.size() - 1);
         std::vector<Info> output = binarySearch(inputTest1, bitacora);
         print(output);
