@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "../linkedList/linkedList.hpp"
 
 struct Info {
     time_t timeValue; // Value that counts in seconds from 01/01/1970 to the corresponding date
