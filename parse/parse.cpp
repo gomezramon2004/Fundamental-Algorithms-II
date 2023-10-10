@@ -8,18 +8,21 @@
 #include <stdexcept>
 #include <iomanip>
 #include <iostream>
+
+// Constructor
 LinkedList::LinkedList() {
     this->head = nullptr;
     this->tail = nullptr;
     this->size = 0;
 }
 
+// Insert a new node
 void LinkedList::insertNode(Info info) {
     Node* newNode = new Node;
     newNode->info = info;
     newNode->next = nullptr;
 
-    if (head == nullptr) {
+    if (!head) {
         head = newNode;
         tail = newNode;
     } else {
@@ -27,14 +30,10 @@ void LinkedList::insertNode(Info info) {
         tail = newNode;
     }
 }
-//empty list fucntion
-void isEmpty(LinkedList list){
-    if(list.head == nullptr){
-        std::cout << "The list is empty" << std::endl;
-    }
-    else{
-        std::cout << "The list is not empty" << std::endl;
-    }
+
+// Check if the list is empty. For debug purposes
+void LinkedList::isEmpty(){
+    (!this -> head) ? std::cout << "The list is empty" << std::endl : std::cout << "The list is not empty" << std::endl;
 }
 
 LinkedList LinkedList::parse(std::string fileName) {
@@ -76,7 +75,6 @@ LinkedList LinkedList::divideList(LinkedList list, char puerto_com){
     LinkedList list2;
     *this = LinkedList();
     Node* temp = list.head;
-    int i = 0;
     while (temp != nullptr) {
         if(temp->info.enterPoint == puerto_com){
             list2.insertNode(temp->info);

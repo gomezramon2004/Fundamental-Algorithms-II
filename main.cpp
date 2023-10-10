@@ -1,7 +1,7 @@
-#include "./parse/parse.cpp"
-#include "./sort/mergeSort.cpp"
-#include "./search/binarySearch.cpp"
-#include "./print/print.cpp"
+#include "./parse/parse.hpp"
+#include "./sort/mergeSort.hpp"
+#include "./search/binarySearch.hpp"
+#include "./print/print.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -26,7 +26,7 @@ int main() {
         bitacora.parse("bitacora.txt");
         //mergeSort(bitacora, 0, bitacora.size() - 1);
         //std::vector<Info> output = binarySearch(inputTest1, bitacora)
-        isEmpty(bitacora);
+        bitacora.isEmpty();
         bitacora = mergeSort(bitacora, 1);
         listaMed = listaRojo.divideList(bitacora, 'M');
         print(listaMed);
