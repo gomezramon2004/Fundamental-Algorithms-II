@@ -18,7 +18,7 @@ void Node::setNext(Node* next) {
     this->next = next;
 }
 
-LinkedList::LinkedList() : size(0), head(nullptr) {}
+LinkedList::LinkedList() : size(0), head(nullptr), tail(nullptr) {}
 
 int LinkedList::getSize() {
     return size;
@@ -28,16 +28,24 @@ Node* LinkedList::getHead() {
     return head;
 }
 
+void LinkedList::setHead(Node head) {
+    this->head = head;
+}
+
+void LinkedList::setHead(Node tail) {
+    this->tail = tail;
+}
+
 void LinkedList::create(Info data) {
     Node* newNode = new Node(data);
+    newNode->setData(data);
+    newNode->setNext(nullptr);
     if (!head) {
         head = newNode;
+        tail = newNode;
     } else {
-        Node* curr = head;
-        while (curr->getNext()) {
-            curr = curr->getNext();
-        }
-        curr->setNext(newNode);
+        tail->setNext(newNode);
+        tail = newNode;
     }
     size++;
 }

@@ -19,11 +19,17 @@ class LinkedList {
 private:
     int size;
     Node* head;
+    Node* tail;
 
 public:
     LinkedList();
     int getSize();
     Node* getHead();
+    void setHead(Node head);
+    void setTail(Node tail);
     void create(Info data);
     ~LinkedList();
 };
+
+
+
