@@ -11,4 +11,4 @@ struct Info {
 };
 
 // Parse the info into a struct named Info
-std::vector<Info> parse(std::string fileName);
+LinkedList parse(std::string fileName);
