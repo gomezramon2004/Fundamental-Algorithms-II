@@ -1,18 +1,16 @@
 CXX = g++
-CXXFLAGS = -Wall -std=c++17
+CXXFLAGS = -Wall -std=c++17 -g
 TARGET = main
 LNKDIR = linkedList
 PRSDIR = parse
 SRTDIR = sort
-SRCDIR = search
 PRNDIR = print
 
 SRCS = main.cpp \
 		$(LNKDIR)/linkedList.cpp \
         $(PRSDIR)/parse.cpp \
-		$(PRNDIR)/print.cpp \
         $(SRTDIR)/mergeSort.cpp \
-		$(SRCDIR)/binarySearch.cpp \
+		$(PRNDIR)/print.cpp \
 
 EXECUTABLE = a.out
 

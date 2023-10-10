@@ -1,7 +1,6 @@
 #include "./linkedList/linkedList.hpp"
 #include "./parse/parse.hpp"
 #include "./sort/mergeSort.hpp"
-#include "./search/binarySearch.hpp"
 #include "./print/print.hpp"
 #include <iostream>
 #include <string>
@@ -23,7 +22,7 @@ int main() {
         // std::string inputTest3 = "0KI";
         // std::string inputTest4 = "AAA";
         LinkedList bitacora = parse("bitacora.txt");
-        mergeSort(bitacora);
+        bitacora = mergeSort(bitacora);
         print(bitacora);
 
     } catch (const std::exception& e) {

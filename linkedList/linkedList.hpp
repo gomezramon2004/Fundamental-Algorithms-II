@@ -1,6 +1,13 @@
 #pragma once
 #include <stdexcept>
-#include "../parse/parse.hpp"
+#include <string>
+
+struct Info {
+    time_t timeValue; // Value that counts in seconds from 01/01/1970 to the corresponding date
+    struct tm dateTime; // Struct that holds the data of our date
+    char enterPoint;
+    std::string ubi;
+};
 
 class Node {
 private:

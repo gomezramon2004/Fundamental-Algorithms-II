@@ -8,7 +8,7 @@ bool compareInfo(const Info& info1, const Info& info2) {
     return info1.ubi < info2.ubi;
 }
 
-void mergeLists(LinkedList& left, LinkedList& right) {
+LinkedList mergeLists(LinkedList& left, LinkedList& right) {
     LinkedList mergedList;
     Node* leftPtr = left.getHead();
     Node* rightPtr = right.getHead();
@@ -32,32 +32,34 @@ void mergeLists(LinkedList& left, LinkedList& right) {
         mergedList.insertNode(rightPtr->getData());
         rightPtr = rightPtr->getNext()  ;
     }
+
+    return mergedList;
 }
 
-void mergeSort(LinkedList& list) {
-    if (list.getHead() || list.getHead()->getNext()) {         // Base case: List is empty or has one node; it's already sorted.
-        LinkedList leftHalf, rightHalf;
-        Node* slow = list.getHead();
-        Node* fast = list.getHead()->getNext();
-
-        while (fast) {
-            fast = fast->getNext();
-            if (fast) {
-                slow = slow->getNext();
-                fast = fast->getNext();
-            }
-        }
-
-        leftHalf.setHead(list.getHead());
-        leftHalf.setTail(slow);
-        rightHalf.setHead(slow->getNext());
-        rightHalf.setTail(list.getTail());
-        slow->setNext(nullptr);
-
-        mergeSort(leftHalf);
-        mergeSort(rightHalf);
-
-        // Merge the sorted halves and return the result.
-        mergeLists(leftHalf, rightHalf);
+LinkedList mergeSort(LinkedList& list) {
+    if (!list.getHead() || !list.getHead()->getNext()) { // Base case: List is empty or has one node; it's already sorted.
+        return list;
     }
+
+    LinkedList leftHalf, rightHalf;
+    Node* slow = list.getHead();
+    Node* fast = list.getHead()->getNext();
+
+    while (fast) {
+        fast = fast->getNext();
+        if (fast) {
+            slow = slow->getNext();
+            fast = fast->getNext();
+        }
+    }
+
+    leftHalf.setHead(list.getHead());
+    leftHalf.setTail(slow);
+    rightHalf.setHead(slow->getNext());
+    rightHalf.setTail(list.getTail());
+    slow->setNext(nullptr);
+
+    mergeSort(leftHalf);
+    mergeSort(rightHalf);
+    return mergeLists(leftHalf, rightHalf);                            // Merge the sorted halves and return the result.
 }

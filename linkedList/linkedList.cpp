@@ -28,7 +28,7 @@ Node* LinkedList::getHead() {
     return head;
 }
 
-Node* LinkedList::getHead() {
+Node* LinkedList::getTail() {
     return tail;
 }
 
@@ -36,7 +36,7 @@ void LinkedList::setHead(Node* head) {
     this->head = head;
 }
 
-void LinkedList::setHead(Node* tail) {
+void LinkedList::setTail(Node* tail) {
     this->tail = tail;
 }
 
