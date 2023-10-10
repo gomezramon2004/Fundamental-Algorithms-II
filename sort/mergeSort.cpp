@@ -37,11 +37,33 @@ void merge(std::vector<Info>& vec, int left, int mid, int right) {
     }
 }
 
-void mergeSort(std::vector<Info>& vec, int left, int right) {
-    if (left < right) {
-        int mid = left + (right - left) / 2;
-        mergeSort(vec, left, mid);
-        mergeSort(vec, mid + 1, right);
-        merge(vec, left, mid, right);
+void mergeSort(LinkedList& list) {
+    if (!list.head || !list.head->next) {
+        // Base case: List is empty or has one node; it's already sorted.
+        return list;
     }
+
+    LinkedList leftHalf, rightHalf;
+    Node* slow = list.head;
+    Node* fast = list.head->next;
+
+    while (fast != nullptr) {
+        fast = fast->next;
+        if (fast != nullptr) {
+            slow = slow->next;
+            fast = fast->next;
+        }
+    }
+
+    leftHalf.head = list.head;
+    leftHalf.tail = slow;
+    rightHalf.head = slow->next;
+    rightHalf.tail = list.tail;
+    slow->next = nullptr;
+
+    leftHalf = mergeSort(leftHalf);
+    rightHalf = mergeSort(rightHalf);
+
+    // Merge the sorted halves and return the result.
+    return mergeLists(leftHalf, rightHalf, option);
 }
