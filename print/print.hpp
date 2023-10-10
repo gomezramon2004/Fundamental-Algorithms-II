@@ -3,4 +3,4 @@
 #include "../parse/parse.hpp"
 
 // Print the output vector
-void print(const std::vector<Info>& vec);
+void print(LinkedList& list);

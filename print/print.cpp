@@ -10,14 +10,16 @@
     a range of 0 to 11, and tm_year starts counting from the year 1900.
 */
 
-void print(const std::vector<Info>& vec) {
-    for (auto &&i : vec) {
-        std::cout << std::setfill('0') << std::setw(2) << i.dateTime.tm_mday << '/' << 
-        std::setfill('0') << std::setw(2) << i.dateTime.tm_mon + 1 << '/' << 
-        i.dateTime.tm_year + 1900 << ' ' << 
-        std::setfill('0') << std::setw(2) << i.dateTime.tm_hour << ":" << 
-        std::setfill('0') << std::setw(2) << i.dateTime.tm_min << " " << 
-        i.enterPoint << " " << 
-        i.ubi << "\n";
+void print(LinkedList& list) {
+    Node* temp = list.getHead();
+    while (temp) {
+        std::cout << std::setfill('0') << std::setw(2) << temp->getData().dateTime.tm_mday << '/' << 
+        std::setfill('0') << std::setw(2) << temp->getData().dateTime.tm_mon + 1 << '/' << 
+        temp->getData().dateTime.tm_year + 1900 << ' ' << 
+        std::setfill('0') << std::setw(2) << temp->getData().dateTime.tm_hour << ":" << 
+        std::setfill('0') << std::setw(2) << temp->getData().dateTime.tm_min << " " << 
+        temp->getData().enterPoint << " " << 
+        temp->getData().ubi << "\n";
+        temp = temp->getNext();
     }
 }
