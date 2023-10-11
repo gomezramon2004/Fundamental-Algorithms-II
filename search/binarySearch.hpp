@@ -1,6 +1,5 @@
 #pragma once
-#include <vector>
-#include "../parse/parse.hpp"
+#include "../linkedList/linkedList.hpp"
 
 // Search if the same value exists to the left side
 void searchByLeft(const std::string& input, Node* node, LinkedList& output);
