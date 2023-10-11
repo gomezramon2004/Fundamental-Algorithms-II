@@ -1,6 +1,7 @@
 #include "mergeSort.hpp"
 #include <iostream>
 
+// Function to compare two Info objects based on 'ubi' and 'timeValue' or 'onlyTime'.
 bool compareInfo(const Info& info1, const Info& info2, const bool& onlyTime) {
     if (info1.ubi == info2.ubi || onlyTime) {
         return info1.timeValue < info2.timeValue;
@@ -8,6 +9,7 @@ bool compareInfo(const Info& info1, const Info& info2, const bool& onlyTime) {
     return info1.ubi < info2.ubi;
 }
 
+// Function to merge two linked lists ('left' and 'right') into a new sorted list based on 'onlyTime'.
 LinkedList mergeLists(LinkedList& left, LinkedList& right, const bool& onlyTime) {
     LinkedList mergedList;
     Node* leftPtr = left.head;
@@ -36,9 +38,10 @@ LinkedList mergeLists(LinkedList& left, LinkedList& right, const bool& onlyTime)
     return mergedList;
 }
 
+// Function to perform merge sort on a linked list based on 'onlyTime'.
 LinkedList mergeSort(LinkedList& list, const bool& onlyTime) {
-    if (!list.head || !list.head->next ) {
-        return list;                            // Base case: List is empty or has one node; it's already sorted.
+    if (!list.head || !list.head->next) {
+        return list;  // Base case: List is empty or has one node; it's already sorted.
     }
 
     LinkedList leftHalf, rightHalf;
@@ -65,4 +68,3 @@ LinkedList mergeSort(LinkedList& list, const bool& onlyTime) {
     // Merge the sorted halves and return the result.
     return mergeLists(leftHalf, rightHalf, onlyTime);
 }
-
