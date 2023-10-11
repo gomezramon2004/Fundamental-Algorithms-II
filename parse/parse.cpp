@@ -27,6 +27,7 @@ void LinkedList::insertNode(Info info) {
         tail = newNode;
     } else {
         tail->next = newNode;
+        newNode->prev = tail;
         tail = newNode;
     }
 }
@@ -55,7 +56,7 @@ LinkedList LinkedList::parse(std::string fileName) {
         std::time_t time = mktime(&timeStruct); 
         std::istringstream ss(dateTime);
         ss >> std::get_time(&timeStruct, "%d/%m/%Y %H:%M");
-        parsedNode = {time, timeStruct, stoi(line.substr(3, 4)), line[17], line.substr(19, 24)};
+        parsedNode = {time, stoi(line.substr(3, 4)), timeStruct, line[17], line.substr(19, 24)};
         this->insertNode(parsedNode);
     }
     return *this;
@@ -71,21 +72,36 @@ int LinkedList::sizeList(LinkedList list){
     return size;
 }
 
-LinkedList LinkedList::divideList(LinkedList list, char puerto_com){
-    LinkedList list2;
-    *this = LinkedList();
-    Node* temp = list.head;
-    while (temp != nullptr) {
-        if(temp->info.enterPoint == puerto_com){
-            list2.insertNode(temp->info);
-        }
-        else{
-            this->insertNode(temp->info);
+LinkedList LinkedList::divideList(char puerto_com){
+    LinkedList list;
+    Node* temp = head;
+
+    while (temp) {
+        if (temp->info.enterPoint == puerto_com) {
+            list.insertNode(temp->info);
         }
         temp = temp->next;
     }
-    return list2;
+
+    return list;
 }
+
+Node* LinkedList::getMid(Node* left, Node* right) const {
+    if (!left || !right) {
+        return nullptr;
+    }
+
+    Node* slow = left;
+    Node* fast = left;
+
+    while (fast != right && fast->next != right) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    return slow;
+}
+
 
 // strptime(dateTime,"%d/%m/%Y %H:%M", &timeStruct); We can't use strptime because Windows isn't POSIX Compliant
 // https://stackoverflow.com/questions/321849/strptime-equivalent-on-windows

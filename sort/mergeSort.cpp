@@ -1,8 +1,8 @@
 #include "mergeSort.hpp"
 #include <iostream>
 
-bool compareInfo(const Info& info1, const Info& info2, int option) {
-    if (option == 0) {
+bool compareInfo(const Info& info1, const Info& info2, const bool& option) {
+    if (!option) {
         if (info1.ubi == info2.ubi) {
             return info1.timeValue < info2.timeValue;
         }
@@ -11,9 +11,7 @@ bool compareInfo(const Info& info1, const Info& info2, int option) {
     return info1.monthValue < info2.monthValue;
 }
 
-
-
-LinkedList mergeLists(LinkedList& left, LinkedList& right, int option) {
+LinkedList mergeLists(LinkedList& left, LinkedList& right, const bool& option) {
     LinkedList mergedList;
     Node* leftPtr = left.head;
     Node* rightPtr = right.head;
@@ -41,7 +39,7 @@ LinkedList mergeLists(LinkedList& left, LinkedList& right, int option) {
     return mergedList;
 }
 
-LinkedList mergeSort(LinkedList& list, int option) {
+LinkedList mergeSort(LinkedList& list, const bool& option) {
     if (list.head == nullptr || list.head->next == nullptr) {
         // Base case: List is empty or has one node; it's already sorted.
         return list;

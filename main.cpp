@@ -21,19 +21,20 @@ int main() {
         // std::string inputTest2 = "1SV";
         // std::string inputTest3 = "0KI";
         // std::string inputTest4 = "AAA";
-        LinkedList bitacora, listaMed, listaRojo;
+        LinkedList bitacora, listaMed, listaRed, outputMed, outputRed;
         //bitacora = bitacora.parse("bitacora.txt");
         bitacora.parse("bitacora.txt");
         //mergeSort(bitacora, 0, bitacora.size() - 1);
         //std::vector<Info> output = binarySearch(inputTest1, bitacora)
         bitacora.isEmpty();
-        bitacora = mergeSort(bitacora, 1);
-        listaMed = listaRojo.divideList(bitacora, 'M');
-        print(listaMed);
-        print(listaRojo);
-        for (int i = 0; i < 12; ++i) {
-            std::cout << months[i] << ": " << countMonth(listaRojo, i + 1) << std::endl;
-        }
+        bitacora = mergeSort(bitacora, false);
+        listaMed = bitacora.divideList('M');
+        listaRed = bitacora.divideList('R');
+        outputMed = binarySearch(listaMed, inputTest1);
+        outputRed = binarySearch(listaRed, inputTest1);
+        outputMed = mergeSort(outputMed, true);
+        outputRed = mergeSort(outputRed, true);
+        print(outputMed, outputRed);
         //print(bitacora);
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;

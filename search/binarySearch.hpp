@@ -3,10 +3,8 @@
 #include "../parse/parse.hpp"
 
 // Search if the same value exists to the left side
-void searchByLeft(const std::string& input, const std::vector<Info>& vec, const int mid, std::vector<Info>& output);
+void searchByLeft(const std::string& input, Node* node, LinkedList& output);
 // Search if the same value exists to the right side
-void searchByRight(const std::string& input, const std::vector<Info>& vec, const int mid, std::vector<Info>& output);
+void searchByRight(const std::string& input, Node* node, LinkedList& output);
 // Binary Search algorithm to find the data structs that they have the same value as the comparison input
-std::vector<Info> binarySearch(const std::string& input, const std::vector<Info>& vec);
-
-int countMonth(LinkedList list, int month);
+LinkedList binarySearch(const LinkedList& list, const std::string& input);
