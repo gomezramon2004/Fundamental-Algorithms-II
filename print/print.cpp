@@ -62,7 +62,7 @@ void print(const LinkedList& list1, const LinkedList& list2) {
             temp2 = temp2->next;
         }
 
-        std::cout << get_month_name(i + 1) << " " << (temp1 ? temp1->info.dateTime.tm_year - 100 : 0) << " " << counter1 << " " << counter2 << "\n";
+        std::cout << get_month_name(i + 1) << " " << temp1->info.dateTime.tm_year - 100 << " " << counter1 << " " << counter2 << "\n";
     }
 }
 
