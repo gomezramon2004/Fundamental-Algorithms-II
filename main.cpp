@@ -22,18 +22,18 @@ int main() {
         // std::string inputTest3 = "0KI";
         // std::string inputTest4 = "AAA";
          // Parse the "bitacora.txt" file to create a linked list of ship entries.
-        LinkedList bitacora = parse("bitacora.txt");
+        LinkedList log = parse("bitacora.txt");
 
         // Sort the linked list in descending order using merge sort.
-        bitacora = mergeSort(bitacora, false);
+        log = mergeSort(log, false);
 
         // Divide the sorted list into two based on the entry point (Mar Mediterráneo and Mar Rojo).
-        LinkedList listaMed = bitacora.divideList('M');
-        LinkedList listaRed = bitacora.divideList('R');
+        LinkedList medList = log.divideList('M');
+        LinkedList redList = log.divideList('R');
 
         // Perform a binary search on both lists to find entries matching the specified input.
-        LinkedList outputMed = binarySearch(listaMed, inputTest1);
-        LinkedList outputRed = binarySearch(listaRed, inputTest1);
+        LinkedList outputMed = binarySearch(medList, inputTest1);
+        LinkedList outputRed = binarySearch(redList, inputTest1);
 
         // Sort the search results by time.
         outputMed = mergeSort(outputMed, true);
