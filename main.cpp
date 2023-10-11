@@ -1,3 +1,4 @@
+#include "./linkedList/linkedList.hpp"
 #include "./parse/parse.hpp"
 #include "./sort/mergeSort.hpp"
 #include "./search/binarySearch.hpp"
@@ -19,13 +20,12 @@ int main() {
         // std::string inputTest2 = "1SV";
         // std::string inputTest3 = "0KI";
         // std::string inputTest4 = "AAA";
-        LinkedList bitacora, listaMed, listaRed, outputMed, outputRed;
-        bitacora.parse("bitacora.txt");
+        LinkedList bitacora = parse("bitacora.txt");
         bitacora = mergeSort(bitacora, false);
-        listaMed = bitacora.divideList('M');
-        listaRed = bitacora.divideList('R');
-        outputMed = binarySearch(listaMed, inputTest1);
-        outputRed = binarySearch(listaRed, inputTest1);
+        LinkedList listaMed = bitacora.divideList('M');
+        LinkedList listaRed = bitacora.divideList('R');
+        LinkedList outputMed = binarySearch(listaMed, inputTest1);
+        LinkedList outputRed = binarySearch(listaRed, inputTest1);
         outputMed = mergeSort(outputMed, true);
         outputRed = mergeSort(outputRed, true);
         print(outputMed, outputRed);
