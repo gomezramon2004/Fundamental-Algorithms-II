@@ -31,8 +31,8 @@ void print(const LinkedList& list1, const LinkedList& list2) {
     Node* temp2 = list2.head;
     size_t i = 0, year = 0;
 
-    temp1->info.dateTime.tm_mon < temp2->info.dateTime.tm_mon ? i = temp1->info.dateTime.tm_mon : i = temp1->info.dateTime.tm_mon;
-    temp1->info.dateTime.tm_year < temp2->info.dateTime.tm_year ? year = temp1->info.dateTime.tm_year : year = temp1->info.dateTime.tm_year;
+    temp1->info.dateTime.tm_mon < temp2->info.dateTime.tm_mon ? i = temp1->info.dateTime.tm_mon : i = temp2->info.dateTime.tm_mon;
+    temp1->info.dateTime.tm_year < temp2->info.dateTime.tm_year ? year = temp1->info.dateTime.tm_year : year = temp2->info.dateTime.tm_year;
 
     while (temp1 || temp2) {
         int counter1 = 0, counter2 = 0;
