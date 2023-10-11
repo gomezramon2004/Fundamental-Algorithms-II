@@ -13,7 +13,7 @@ LinkedList mergeLists(LinkedList& left, LinkedList& right, const bool& onlyTime)
     Node* leftPtr = left.head;
     Node* rightPtr = right.head;
 
-    while (leftPtr != nullptr && rightPtr != nullptr) {
+    while (leftPtr && rightPtr) {
         if (compareInfo(leftPtr->info, rightPtr->info, onlyTime)) {
             mergedList.insertNode(leftPtr->info);
             leftPtr = leftPtr->next;
@@ -23,12 +23,12 @@ LinkedList mergeLists(LinkedList& left, LinkedList& right, const bool& onlyTime)
         }
     }
 
-    while (leftPtr != nullptr) {
+    while (leftPtr) {
         mergedList.insertNode(leftPtr->info);
         leftPtr = leftPtr->next;
     }
 
-    while (rightPtr != nullptr) {
+    while (rightPtr) {
         mergedList.insertNode(rightPtr->info);
         rightPtr = rightPtr->next;
     }
@@ -37,18 +37,17 @@ LinkedList mergeLists(LinkedList& left, LinkedList& right, const bool& onlyTime)
 }
 
 LinkedList mergeSort(LinkedList& list, const bool& onlyTime) {
-    if (list.head == nullptr || list.head->next == nullptr) {
-        // Base case: List is empty or has one node; it's already sorted.
-        return list;
+    if (!list.head || !list.head->next ) {
+        return list;                            // Base case: List is empty or has one node; it's already sorted.
     }
 
     LinkedList leftHalf, rightHalf;
     Node* slow = list.head;
     Node* fast = list.head->next;
 
-    while (fast != nullptr) {
+    while (fast) {
         fast = fast->next;
-        if (fast != nullptr) {
+        if (fast) {
             slow = slow->next;
             fast = fast->next;
         }

@@ -9,11 +9,7 @@
 #include <iostream>
 
 // Constructor
-LinkedList::LinkedList() {
-    this->head = nullptr;
-    this->tail = nullptr;
-    this->size = 0;
-}
+LinkedList::LinkedList() : head(nullptr), tail(nullptr), size(0) {}
 
 // Insert a new node
 void LinkedList::insertNode(Info info) {
@@ -31,6 +27,7 @@ void LinkedList::insertNode(Info info) {
     }
 }
 
+// Divide the list into two lists
 LinkedList LinkedList::divideList(char puerto_com){
     LinkedList list;
     Node* temp = head;
@@ -45,6 +42,7 @@ LinkedList LinkedList::divideList(char puerto_com){
     return list;
 }
 
+// Get the middle node
 Node* LinkedList::getMid(Node* left, Node* right) const {
     if (!left || !right) {
         return nullptr;
