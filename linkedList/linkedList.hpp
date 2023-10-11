@@ -1,5 +1,4 @@
 #pragma once
-#include <stdexcept>
 #include <string>
 
 struct Info {
@@ -10,34 +9,21 @@ struct Info {
 };
 
 class Node {
-private:
-    Info data;
-    Node* next;
-
-public:
-    Node(Info data);
-    Info getData();
-    Node* getNext();
-    void setData(Info data);
-    void setNext(Node* next);
+    public: 
+        Info info;
+        Node* next;
+        Node* prev;
 };
 
 class LinkedList {
-private:
-    int size;
-    Node* head;
-    Node* tail;
+    public:
+        Node* head;
+        Node* tail;
+        int size;
 
-public:
-    LinkedList();
-    int getSize();
-    Node* getHead();
-    Node* getTail();
-    void setHead(Node* head);
-    void setTail(Node* tail);
-    void insertNode(Info data);
-    ~LinkedList();
+        LinkedList();
+        void insertNode(Info info);
+        LinkedList divideList(char puerto_com);
+        Node* getMid(Node* left, Node* right) const;
 };
-
-
 

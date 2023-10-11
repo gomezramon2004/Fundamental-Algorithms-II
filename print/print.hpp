@@ -1,6 +1,7 @@
 #pragma once
-#include <vector>
-#include "../parse/parse.hpp"
+#include "../linkedList/linkedList.hpp"
 
 // Print the output vector
-void print(LinkedList& list);
+std::string get_month_name(int index);
+//void print(const std::vector<Info>& vec);
+void print(const LinkedList& list1, const LinkedList& list2);

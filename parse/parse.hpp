@@ -1,7 +1,5 @@
 #pragma once
-#include <string>
-#include <vector>
 #include "../linkedList/linkedList.hpp"
+#include <string>
 
-// Parse the info into a struct named Info
-LinkedList parse(std::string fileName);
+LinkedList parse(std::string fileName);  

@@ -7,6 +7,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <iomanip>
+#include <iostream>
 
 LinkedList parse(std::string fileName) {
     std::ifstream inputFile(fileName);  // RAII is responsible for destruct the file-handling object out of scope. It will handle file closing automatically
@@ -30,7 +31,6 @@ LinkedList parse(std::string fileName) {
         parsedNode = {time, timeStruct, line[17], line.substr(19, 24)};
         list.insertNode(parsedNode);
     }
-
     return list;
 }
 

@@ -1,10 +1,10 @@
 #include "./linkedList/linkedList.hpp"
 #include "./parse/parse.hpp"
 #include "./sort/mergeSort.hpp"
+#include "./search/binarySearch.hpp"
 #include "./print/print.hpp"
 #include <iostream>
 #include <string>
-#include <vector>
 
 // Description: Sort a log info in descending order using merge sort and display all of the entries matched with the user input
 
@@ -12,7 +12,7 @@
 // Andrés Sandoval Ibarra - A01253138
 // Daniel Fernández Clausen - A01254659
 // Ramón Alberto Gómez Urquídez - A01254784
-// October 10th, 2023
+// October 11th, 2023
 
 int main() {
     try {
@@ -22,9 +22,14 @@ int main() {
         // std::string inputTest3 = "0KI";
         // std::string inputTest4 = "AAA";
         LinkedList bitacora = parse("bitacora.txt");
-        bitacora = mergeSort(bitacora);
-        print(bitacora);
-
+        bitacora = mergeSort(bitacora, false);
+        LinkedList listaMed = bitacora.divideList('M');
+        LinkedList listaRed = bitacora.divideList('R');
+        LinkedList outputMed = binarySearch(listaMed, inputTest1);
+        LinkedList outputRed = binarySearch(listaRed, inputTest1);
+        outputMed = mergeSort(outputMed, true);
+        outputRed = mergeSort(outputRed, true);
+        print(outputMed, outputRed);
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
         return 1;

@@ -1,63 +1,64 @@
 #include "linkedList.hpp"
+#include <fstream>
+#include <string>
+#include <ctime>
+#include <algorithm>
+#include <sstream>
+#include <stdexcept>
+#include <iomanip>
+#include <iostream>
 
-Node::Node(Info data) : data(data), next(nullptr) {}
+// Constructor
+LinkedList::LinkedList() : head(nullptr), tail(nullptr), size(0) {}
 
-Info Node::getData() {
-    return data;
-}
+// Insert a new node
+void LinkedList::insertNode(Info info) {
+    Node* newNode = new Node;
+    newNode->info = info;
+    newNode->next = nullptr;
 
-Node* Node::getNext() {
-    return next;
-}
-
-void Node::setData(Info data) {
-    this->data = data;
-}
-
-void Node::setNext(Node* next) {
-    this->next = next;
-}
-
-LinkedList::LinkedList() : size(0), head(nullptr), tail(nullptr) {}
-
-int LinkedList::getSize() {
-    return size;
-}
-
-Node* LinkedList::getHead() {
-    return head;
-}
-
-Node* LinkedList::getTail() {
-    return tail;
-}
-
-void LinkedList::setHead(Node* head) {
-    this->head = head;
-}
-
-void LinkedList::setTail(Node* tail) {
-    this->tail = tail;
-}
-
-void LinkedList::insertNode(Info data) {
-    Node* newNode = new Node(data);
-    newNode->setData(data);
-    newNode->setNext(nullptr);
     if (!head) {
         head = newNode;
         tail = newNode;
     } else {
-        tail->setNext(newNode);
+        tail->next = newNode;
+        newNode->prev = tail;
         tail = newNode;
     }
-    size++;
 }
 
-LinkedList::~LinkedList() {
-    while (head) {
-        Node* temp = head;
-        head = head->getNext();
-        delete temp;
+// Divide the list into two lists
+LinkedList LinkedList::divideList(char puerto_com){
+    LinkedList list;
+    Node* temp = head;
+
+    while (temp) {
+        if (temp->info.enterPoint == puerto_com) {
+            list.insertNode(temp->info);
+        }
+        temp = temp->next;
     }
+
+    return list;
 }
+
+// Get the middle node
+Node* LinkedList::getMid(Node* left, Node* right) const {
+    if (!left || !right) {
+        return nullptr;
+    }
+
+    Node* slow = left;
+    Node* fast = left;
+
+    while (fast != right && fast->next != right) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    return slow;
+}
+
+// strptime(dateTime,"%d/%m/%Y %H:%M", &timeStruct); We can't use strptime because Windows isn't POSIX Compliant
+// https://stackoverflow.com/questions/321849/strptime-equivalent-on-windows
+// https://www.quora.com/Why-doesnt-Microsoft-make-Windows-POSIX-compliant 
