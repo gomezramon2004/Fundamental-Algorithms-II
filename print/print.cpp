@@ -31,14 +31,14 @@ std::string get_month_name(int index) {
 void print(const LinkedList& list1, const LinkedList& list2) {
     Node* temp1 = list1.head; // Initialize a pointer for the first linked list.
     Node* temp2 = list2.head; // Initialize a pointer for the second linked list.
-    size_t i = 0, year = 0; // Initialize counters for months and years.
+    size_t i = 0, year = 0, counter1 = 0, counter2 = 0;// Initialize counters for months, years, and each list.
 
     // Determine the starting month and year by comparing the first entries from both lists.
     temp1->info.dateTime.tm_mon < temp2->info.dateTime.tm_mon ? i = temp1->info.dateTime.tm_mon : i = temp2->info.dateTime.tm_mon;
     temp1->info.dateTime.tm_year < temp2->info.dateTime.tm_year ? year = temp1->info.dateTime.tm_year : year = temp2->info.dateTime.tm_year;
 
     while (temp1 || temp2) { // Continue looping as long as there are elements in either list.
-        int counter1 = 0, counter2 = 0; // Initialize counters for each list.
+
 
         // Count the entries for the current month in the first list.
         while (temp1 && temp1->info.dateTime.tm_mon == i) {
@@ -57,5 +57,8 @@ void print(const LinkedList& list1, const LinkedList& list2) {
 
         // Move to the next month and update the year if necessary.
         i + 1 == 12 ? ++year, i = 0 : ++i;
+
+        // Restart counters for each list.
+        counter1 = 0, counter2 = 0;
     }
 }
