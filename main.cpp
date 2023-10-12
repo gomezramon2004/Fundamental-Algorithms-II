@@ -16,8 +16,7 @@
 
 int main() {
     try {
-        std::string months[12]= {"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"};
-        std::string inputTest1 = "4HU";
+        std::string inputTest1 = "4TL";
         // std::string inputTest2 = "1SV";
         // std::string inputTest3 = "0KI";
         // std::string inputTest4 = "AAA";
